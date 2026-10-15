@@ -239,7 +239,6 @@
       .feature-card,
       .quiz-card,
       .quote-card,
-      .game-card,
       .verse-panel {
         background: rgba(255, 255, 255, 0.92);
         border: 1px solid rgba(44, 79, 191, 0.09);
@@ -399,36 +398,100 @@
         color: var(--muted);
       }
 
-      .game-card {
-        max-width: 620px;
-        margin: 0 auto;
-        padding: 28px 24px;
+      .word-search-layout {
+        display: grid;
+        grid-template-columns: minmax(0, 460px) minmax(220px, 1fr);
+        gap: 48px;
+        align-items: start;
       }
 
-      #game-prompt {
-        font-size: 1.35rem;
-        font-weight: 600;
+      .word-search-grid {
+        display: grid;
+        grid-template-columns: repeat(12, minmax(0, 1fr));
+        gap: 3px;
+        width: min(100%, 460px);
+      }
+
+      .word-search-letter {
+        aspect-ratio: 1;
+        min-width: 0;
+        padding: 0;
+        border: 1px solid rgba(44, 79, 191, 0.14);
+        border-radius: 4px;
+        background: #fff;
+        color: var(--text);
+        cursor: pointer;
+        font: inherit;
+        font-size: 0.9rem;
+        font-weight: 700;
+      }
+
+      .word-search-letter:hover {
+        border-color: var(--primary);
+      }
+
+      .word-search-letter.is-selected {
+        border-color: #c98a19;
+        background: rgba(255, 191, 105, 0.35);
+      }
+
+      .word-search-letter.is-found {
+        border-color: rgba(30, 159, 110, 0.45);
+        background: rgba(30, 159, 110, 0.18);
+        color: #146c4b;
+      }
+
+      .word-search-letter:focus-visible {
+        position: relative;
+        z-index: 1;
+        outline: 2px solid var(--primary);
+        outline-offset: 1px;
+      }
+
+      .word-search-sidebar h3 {
+        margin-bottom: 14px;
+      }
+
+      .word-search-instructions {
         margin-bottom: 18px;
+        color: var(--muted);
+        font-size: 0.95rem;
       }
 
-      #game-form {
+      .word-search-list {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 14px 20px;
+        list-style: none;
+      }
+
+      .word-search-word {
         display: flex;
-        gap: 12px;
-        flex-wrap: wrap;
+        justify-content: space-between;
+        gap: 8px;
+        border-bottom: 1px solid rgba(44, 79, 191, 0.12);
+        padding-bottom: 8px;
+        font-weight: 600;
       }
 
-      #game-input {
-        flex: 1 1 220px;
-        min-height: 50px;
-        border: 1px solid rgba(44, 79, 191, 0.15);
-        border-radius: 12px;
-        padding: 0 16px;
-        background: #f8faff;
+      .word-search-word.found .word-search-label {
+        color: var(--success);
+        text-decoration: line-through;
       }
 
-      .game-message {
-        min-height: 24px;
-        margin-top: 16px;
+      .word-search-word-status {
+        color: var(--success);
+        font-size: 0.8rem;
+      }
+
+      .word-search-controls {
+        margin-top: 26px;
+      }
+
+      .word-search-status {
+        min-height: 28px;
+        margin-top: 14px;
+        color: var(--primary-dark);
         font-weight: 600;
       }
 
@@ -467,8 +530,12 @@
           padding: 70px 0;
         }
 
-        #game-form {
-          flex-direction: column;
+      }
+
+      @media (max-width: 760px) {
+        .word-search-layout {
+          grid-template-columns: minmax(0, 1fr);
+          gap: 28px;
         }
       }
     </style>
@@ -480,14 +547,6 @@
           <span class="brand-mark">✝</span>
           <span>EduMoral</span>
         </div>
-        <nav>
-          <a href="#features">Features</a>
-          <a href="#verse">Daily Verse</a>
-          <a href="history.html">History</a>
-          <a href="#quiz">Quiz</a>
-          <a href="#quotes">Quotes</a>
-          <a href="#game">Game</a>
-        </nav>
       </div>
     </header>
 
@@ -524,36 +583,36 @@
             <h2>Everything you need for spiritual learning</h2>
           </div>
           <div class="feature-grid">
-            <article class="feature-card">
+            <a class="feature-card" href="#verse">
               <div class="icon">📖</div>
               <h3>Bible Verse</h3>
               <p>Daily reading to help users reflect, learn, and grow through Scripture.</p>
-            </article>
-            <article class="feature-card">
+            </a>
+            <a class="feature-card" href="#quiz">
               <div class="icon">🧠</div>
               <h3>Quizzes</h3>
               <p>Assessment of understanding through short, engaging Bible challenges.</p>
-            </article>
-            <article class="feature-card">
+            </a>
+            <a class="feature-card" href="#verse">
               <div class="icon">📝</div>
               <h3>Summarize</h3>
               <p>Simple explanations of teachings to make every lesson easier to grasp.</p>
-            </article>
-            <article class="feature-card">
+            </a>
+            <a class="feature-card" href="#quotes">
               <div class="icon">✨</div>
               <h3>Motivational Quotes</h3>
               <p>Encouraging reminders that uplift the heart and strengthen hope.</p>
-            </article>
-            <article class="feature-card">
+            </a>
+            <a class="feature-card" href="history.html">
               <div class="icon">⏳</div>
               <h3>History of God</h3>
               <p>Educational content that shares biblical stories and God’s unfolding plan.</p>
-            </article>
-            <article class="feature-card highlight">
-              <div class="icon">🎯</div>
-              <h3>Bible Crossword Game</h3>
-              <p>Added interactive learning for a more enjoyable and memorable experience.</p>
-            </article>
+            </a>
+            <a class="feature-card highlight" href="#word-search">
+              <div class="icon">🔎</div>
+              <h3>Word Search</h3>
+              <p>Find hidden words from Scripture in an interactive letter grid.</p>
+            </a>
           </div>
         </div>
       </section>
@@ -604,6 +663,9 @@
             <p id="quote-text">“Faith is taking the first step even when you don’t see the whole staircase.”</p>
             <span id="quote-author">— Martin Luther King Jr.</span>
           </div>
+          <div class="quote-controls">
+            <button id="next-quote" class="primary-btn" type="button">Another Quote</button>
+          </div>
         </div>
       </section>
 
@@ -623,100 +685,28 @@
         </div>
       </section>
 
-      <section id="game" class="section game-section">
+      <section id="word-search" class="section word-search-section alt-bg">
         <div class="container">
           <div class="section-heading">
             <p class="eyebrow">Interactive Learning</p>
-            <h2>Match Column A with Column B</h2>
+            <h2>Word Search</h2>
           </div>
-          <div class="game-card">
-            <div class="match-grid">
-              <div class="match-column">
-                <h3>Column A</h3>
-                <div class="match-item"><span>Faith</span></div>
-                <div class="match-item"><span>Love</span></div>
-                <div class="match-item"><span>Courage</span></div>
-                <div class="match-item"><span>Guidance</span></div>
-                <div class="match-item"><span>Grace</span></div>
-              </div>
-
-              <div class="match-column">
-                <h3>Column B</h3>
-                <div class="match-item"><span>Proverbs 3:5</span></div>
-                <div class="match-item"><span>1 Corinthians 16:14</span></div>
-                <div class="match-item"><span>Joshua 1:9</span></div>
-                <div class="match-item"><span>Psalm 23:1</span></div>
-                <div class="match-item"><span>John 3:16</span></div>
+          <div class="word-search-layout">
+            <div id="word-search-grid" class="word-search-grid" aria-label="Bible word search letter grid"></div>
+            <div class="word-search-sidebar">
+              <h3>Words to Find</h3>
+              <p class="word-search-instructions">Click the first and last letters of a word in a straight line. Words may go across, down, diagonally, or backward.</p>
+              <ul id="word-search-list" class="word-search-list"></ul>
+              <div class="word-search-controls">
+                <button id="new-word-search" class="primary-btn" type="button">New Puzzle</button>
+                <button id="reset-word-search" class="secondary-btn" type="button">Reset Puzzle</button>
+                <p id="word-search-status" class="word-search-status" role="status" aria-live="polite"></p>
               </div>
             </div>
-
-            <div class="match-pairs">
-              <div class="match-row">
-                <label for="match-faith">Faith</label>
-                <select id="match-faith" class="match-select" data-answer="Proverbs 3:5">
-                  <option value="">Select</option>
-                  <option value="Proverbs 3:5">Proverbs 3:5</option>
-                  <option value="1 Corinthians 16:14">1 Corinthians 16:14</option>
-                  <option value="Joshua 1:9">Joshua 1:9</option>
-                  <option value="Psalm 23:1">Psalm 23:1</option>
-                  <option value="John 3:16">John 3:16</option>
-                </select>
-              </div>
-
-              <div class="match-row">
-                <label for="match-love">Love</label>
-                <select id="match-love" class="match-select" data-answer="1 Corinthians 16:14">
-                  <option value="">Select</option>
-                  <option value="Proverbs 3:5">Proverbs 3:5</option>
-                  <option value="1 Corinthians 16:14">1 Corinthians 16:14</option>
-                  <option value="Joshua 1:9">Joshua 1:9</option>
-                  <option value="Psalm 23:1">Psalm 23:1</option>
-                  <option value="John 3:16">John 3:16</option>
-                </select>
-              </div>
-
-              <div class="match-row">
-                <label for="match-courage">Courage</label>
-                <select id="match-courage" class="match-select" data-answer="Joshua 1:9">
-                  <option value="">Select</option>
-                  <option value="Proverbs 3:5">Proverbs 3:5</option>
-                  <option value="1 Corinthians 16:14">1 Corinthians 16:14</option>
-                  <option value="Joshua 1:9">Joshua 1:9</option>
-                  <option value="Psalm 23:1">Psalm 23:1</option>
-                  <option value="John 3:16">John 3:16</option>
-                </select>
-              </div>
-
-              <div class="match-row">
-                <label for="match-guidance">Guidance</label>
-                <select id="match-guidance" class="match-select" data-answer="Psalm 23:1">
-                  <option value="">Select</option>
-                  <option value="Proverbs 3:5">Proverbs 3:5</option>
-                  <option value="1 Corinthians 16:14">1 Corinthians 16:14</option>
-                  <option value="Joshua 1:9">Joshua 1:9</option>
-                  <option value="Psalm 23:1">Psalm 23:1</option>
-                  <option value="John 3:16">John 3:16</option>
-                </select>
-              </div>
-
-              <div class="match-row">
-                <label for="match-grace">Grace</label>
-                <select id="match-grace" class="match-select" data-answer="John 3:16">
-                  <option value="">Select</option>
-                  <option value="Proverbs 3:5">Proverbs 3:5</option>
-                  <option value="1 Corinthians 16:14">1 Corinthians 16:14</option>
-                  <option value="Joshua 1:9">Joshua 1:9</option>
-                  <option value="Psalm 23:1">Psalm 23:1</option>
-                  <option value="John 3:16">John 3:16</option>
-                </select>
-              </div>
-            </div>
-
-            <button id="match-check" type="button" class="primary-btn">Check Matches</button>
-            <p id="match-message" class="game-message"></p>
           </div>
         </div>
       </section>
+
     </main>
 
     <footer class="site-footer">
@@ -973,7 +963,16 @@
         verses.map((verse, index) => [verse.reference, verseSummaryIdeas[index]])
       );
 
-      const quizData = [
+      function shuffleArray(items) {
+        const shuffled = [...items];
+        for (let index = shuffled.length - 1; index > 0; index -= 1) {
+          const randomIndex = Math.floor(Math.random() * (index + 1));
+          [shuffled[index], shuffled[randomIndex]] = [shuffled[randomIndex], shuffled[index]];
+        }
+        return shuffled;
+      }
+
+      const customQuizData = [
         {
           question: 'What is the main message of Proverbs 3:5?',
           options: ['Trust in the Lord', 'Ignore wisdom', 'Follow only your feelings', 'Avoid prayer'],
@@ -991,9 +990,31 @@
         }
       ];
 
-      let currentVerse = 0;
+      const quizData = [
+        ...customQuizData,
+        ...verses.map((verse) => {
+          const otherReferences = [...new Set(
+            verses
+              .filter((candidate) => candidate.reference !== verse.reference)
+              .map((candidate) => candidate.reference)
+          )];
+          const options = shuffleArray([
+            verse.reference,
+            ...shuffleArray(otherReferences).slice(0, 3)
+          ]);
+
+          return {
+            question: `Which Bible reference contains this verse: "${verse.text}"?`,
+            options,
+            answer: verse.reference
+          };
+        })
+      ];
+
+      let currentVerse = Math.floor(Math.random() * verses.length);
       let currentQuestionIndex = 0;
       let score = 0;
+      let activeQuiz = [];
 
       const verseText = document.getElementById('verse-text');
       const verseReference = document.getElementById('verse-reference');
@@ -1022,7 +1043,13 @@
       }
 
       newVerseBtn.addEventListener('click', () => {
-        currentVerse = (currentVerse + 1) % verses.length;
+        if (verses.length > 1) {
+          let nextVerse;
+          do {
+            nextVerse = Math.floor(Math.random() * verses.length);
+          } while (nextVerse === currentVerse);
+          currentVerse = nextVerse;
+        }
         renderVerse();
       });
 
@@ -1044,10 +1071,10 @@
         quoteAuthor.textContent = `— ${quote.author}`;
       }
 
-      setInterval(() => {
+      document.getElementById('next-quote').addEventListener('click', () => {
         quoteIndex = (quoteIndex + 1) % quotes.length;
         renderQuote();
-      }, 5000);
+      });
 
       renderQuote();
 
@@ -1057,11 +1084,12 @@
       const nextBtn = document.getElementById('next-question');
 
       function renderQuestion() {
-        const current = quizData[currentQuestionIndex];
-        questionEl.textContent = current.question;
+        const current = activeQuiz[currentQuestionIndex];
+        questionEl.textContent = `Question ${currentQuestionIndex + 1} of ${activeQuiz.length}: ${current.question}`;
         optionsEl.innerHTML = '';
         feedbackEl.textContent = '';
         nextBtn.classList.add('hidden');
+        nextBtn.textContent = 'Next Question';
 
         current.options.forEach((option) => {
           const button = document.createElement('button');
@@ -1074,7 +1102,7 @@
       }
 
       function handleAnswer(selectedOption, selectedButton) {
-        const current = quizData[currentQuestionIndex];
+        const current = activeQuiz[currentQuestionIndex];
         const buttons = Array.from(optionsEl.querySelectorAll('.quiz-option'));
 
         buttons.forEach((button) => {
@@ -1099,59 +1127,317 @@
         nextBtn.classList.remove('hidden');
       }
 
+      function startQuiz() {
+        activeQuiz = shuffleArray(quizData).slice(0, 10);
+        currentQuestionIndex = 0;
+        score = 0;
+        renderQuestion();
+      }
+
       nextBtn.addEventListener('click', () => {
+        if (currentQuestionIndex >= activeQuiz.length) {
+          startQuiz();
+          return;
+        }
+
         currentQuestionIndex += 1;
 
-        if (currentQuestionIndex < quizData.length) {
+        if (currentQuestionIndex < activeQuiz.length) {
           renderQuestion();
         } else {
-          questionEl.textContent = `Quiz complete! Your score is ${score} / ${quizData.length}`;
+          questionEl.textContent = `Quiz complete! Your score is ${score} / ${activeQuiz.length}`;
           optionsEl.innerHTML = '';
           feedbackEl.textContent = 'You did well. Keep learning and growing in faith!';
           feedbackEl.style.color = '#2c4fbf';
-          nextBtn.classList.add('hidden');
+          nextBtn.textContent = 'Start Another Check';
         }
       });
 
-      renderQuestion();
+      startQuiz();
 
-      const matchCheck = document.getElementById('match-check');
-      const matchSelects = Array.from(document.querySelectorAll('.match-select'));
-      const matchMessage = document.getElementById('match-message');
+      const wordSearchAnswerBank = [
+        'FAITH', 'GRACE', 'JESUS', 'PRAYER', 'BIBLE', 'HOPE', 'LOVE', 'PSALM', 'CROSS', 'CHURCH',
+        'ANGEL', 'GOSPEL', 'WISDOM', 'MERCY', 'PEACE', 'JOY', 'SPIRIT', 'CREATION', 'COVENANT', 'DISCIPLE',
+        'APOSTLE', 'PROPHET', 'KINGDOM', 'HEAVEN', 'WORSHIP', 'TEMPLE', 'SACRIFICE', 'SALVATION', 'REDEMPTION', 'FORGIVENESS',
+        'OBEDIENCE', 'COURAGE', 'KINDNESS', 'PATIENCE', 'HUMILITY', 'COMPASSION', 'TRUTH', 'LIGHT', 'SHEPHERD', 'LAMB',
+        'DOVE', 'ZION', 'EDEN', 'MOSES', 'DAVID', 'NOAH', 'ABRAHAM', 'ISAAC', 'JACOB', 'JOSEPH',
+        'RUTH', 'ESTHER', 'MARY', 'PETER', 'PAUL', 'JOHN', 'LUKE', 'MARK', 'MATTHEW', 'JAMES',
+        'SARAH', 'REBEKAH', 'DANIEL', 'ELIJAH', 'ELISHA', 'SAMUEL', 'JOSHUA', 'JONAH', 'ISAIAH', 'JEREMIAH',
+        'EZEKIEL', 'MICAH', 'MALACHI', 'MIRIAM', 'MARTHA', 'LAZARUS', 'BETHLEHEM', 'GALILEE', 'JORDAN', 'JERICHO',
+        'NAZARETH', 'JERUSALEM', 'GOLGOTHA', 'CALVARY', 'GARDEN', 'WILDERNESS', 'PROMISE', 'BLESSING', 'BREAD', 'WINE',
+        'FISH', 'BOAT', 'DESERT', 'MOUNTAIN', 'RIVER', 'OLIVE', 'VINE', 'SEED', 'FRUIT', 'TALENT'
+      ];
+      const wordSearchSize = 12;
+      const wordSearchWordCount = 10;
+      const wordSearchDirections = [
+        { rowStep: 0, columnStep: 1 },
+        { rowStep: 0, columnStep: -1 },
+        { rowStep: 1, columnStep: 0 },
+        { rowStep: -1, columnStep: 0 },
+        { rowStep: 1, columnStep: 1 },
+        { rowStep: 1, columnStep: -1 },
+        { rowStep: -1, columnStep: 1 },
+        { rowStep: -1, columnStep: -1 }
+      ];
 
-      function checkMatches() {
-        let allCorrect = true;
-        const resultLines = [];
-
-        matchSelects.forEach((select) => {
-          const expected = select.dataset.answer;
-          const value = select.value;
-          const label = select.id.replace('match-', '').replace(/-/g, ' ');
-
-          select.classList.remove('correct', 'wrong');
-
-          if (value === expected) {
-            select.classList.add('correct');
-            resultLines.push(`<div style="color: #1e9f6e; font-weight: 700;">${label}: Correct</div>`);
-          } else {
-            allCorrect = false;
-            select.classList.add('wrong');
-            resultLines.push(`<div style="color: #d64545; font-weight: 700;">${label}: Wrong</div>`);
-          }
-        });
-
-        if (allCorrect) {
-          matchCheck.disabled = true;
-          matchCheck.textContent = 'Matched!';
-          matchMessage.innerHTML = '<div style="color: #1e9f6e; font-weight: 700;">Excellent! You matched all the Bible references correctly.</div>';
-        } else {
-          matchCheck.disabled = false;
-          matchCheck.textContent = 'Check Matches';
-          matchMessage.innerHTML = resultLines.join('');
+      function shuffleWordSearchItems(items) {
+        const shuffled = [...items];
+        for (let index = shuffled.length - 1; index > 0; index -= 1) {
+          const randomIndex = Math.floor(Math.random() * (index + 1));
+          [shuffled[index], shuffled[randomIndex]] = [shuffled[randomIndex], shuffled[index]];
         }
+        return shuffled;
       }
 
-      matchCheck.addEventListener('click', checkMatches);
+      function getWordSearchPlacements(word) {
+        const placements = [];
+        wordSearchDirections.forEach(({ rowStep, columnStep }) => {
+          for (let row = 0; row < wordSearchSize; row += 1) {
+            for (let column = 0; column < wordSearchSize; column += 1) {
+              const endRow = row + rowStep * (word.length - 1);
+              const endColumn = column + columnStep * (word.length - 1);
+              if (endRow < 0 || endRow >= wordSearchSize || endColumn < 0 || endColumn >= wordSearchSize) continue;
+
+              placements.push(Array.from({ length: word.length }, (_, index) => ({
+                row: row + rowStep * index,
+                column: column + columnStep * index
+              })));
+            }
+          }
+        });
+        return shuffleWordSearchItems(placements);
+      }
+
+      function createWordSearchPuzzle() {
+        for (let attempt = 0; attempt < 50; attempt += 1) {
+          const words = shuffleWordSearchItems(wordSearchAnswerBank)
+            .slice(0, wordSearchWordCount)
+            .map((word) => ({ word }));
+          const placementOrder = shuffleWordSearchItems(words)
+            .sort((first, second) => second.word.length - first.word.length);
+          const letters = Array.from({ length: wordSearchSize }, () => Array(wordSearchSize).fill(''));
+          const positions = new Map();
+          let placementChecks = 0;
+
+          function placeWord(index) {
+            if (index === placementOrder.length) return true;
+            const word = placementOrder[index].word;
+
+            for (const placement of getWordSearchPlacements(word)) {
+              placementChecks += 1;
+              if (placementChecks > 20000) return false;
+
+              const fits = placement.every((cell, letterIndex) =>
+                !letters[cell.row][cell.column] || letters[cell.row][cell.column] === word[letterIndex]
+              );
+              if (!fits) continue;
+
+              const addedCells = [];
+              placement.forEach((cell, letterIndex) => {
+                if (!letters[cell.row][cell.column]) {
+                  letters[cell.row][cell.column] = word[letterIndex];
+                  addedCells.push(cell);
+                }
+              });
+              positions.set(word, placement.map((cell) => `${cell.row}-${cell.column}`));
+
+              if (placeWord(index + 1)) return true;
+
+              positions.delete(word);
+              addedCells.forEach((cell) => {
+                letters[cell.row][cell.column] = '';
+              });
+            }
+            return false;
+          }
+
+          if (!placeWord(0)) continue;
+          for (let row = 0; row < wordSearchSize; row += 1) {
+            for (let column = 0; column < wordSearchSize; column += 1) {
+              if (!letters[row][column]) {
+                letters[row][column] = String.fromCharCode(65 + Math.floor(Math.random() * 26));
+              }
+            }
+          }
+          return { words, letters, positions };
+        }
+
+        throw new Error('Unable to generate a word search puzzle.');
+      }
+
+      let wordSearchPuzzle = createWordSearchPuzzle();
+      let wordSearchWords = wordSearchPuzzle.words;
+      let wordSearchLetters = wordSearchPuzzle.letters;
+      let wordSearchPositions = wordSearchPuzzle.positions;
+
+      const wordSearchGrid = document.getElementById('word-search-grid');
+      const wordSearchList = document.getElementById('word-search-list');
+      const wordSearchStatus = document.getElementById('word-search-status');
+      const wordSearchButtons = new Map();
+      const foundWordSearchWords = new Set();
+      const foundWordSearchCells = new Set();
+      let wordSearchStart = null;
+      let selectedWordSearchCells = [];
+
+      function renderWordSearchSelection() {
+        wordSearchButtons.forEach((button, cellKey) => {
+          const isSelected = selectedWordSearchCells.includes(cellKey);
+          button.classList.toggle('is-selected', isSelected && !foundWordSearchCells.has(cellKey));
+          button.classList.toggle('is-found', foundWordSearchCells.has(cellKey));
+          button.setAttribute('aria-pressed', String(isSelected || foundWordSearchCells.has(cellKey)));
+        });
+      }
+
+      function getWordSearchPath(start, end) {
+        const rowDifference = end.row - start.row;
+        const columnDifference = end.column - start.column;
+        const stepCount = Math.max(Math.abs(rowDifference), Math.abs(columnDifference));
+        if (stepCount === 0) return [start];
+        if (rowDifference !== 0 && columnDifference !== 0 && Math.abs(rowDifference) !== Math.abs(columnDifference)) {
+          return null;
+        }
+
+        const rowStep = Math.sign(rowDifference);
+        const columnStep = Math.sign(columnDifference);
+        return Array.from({ length: stepCount + 1 }, (_, index) => ({
+          row: start.row + rowStep * index,
+          column: start.column + columnStep * index
+        }));
+      }
+
+      function selectWordSearchCell(row, column) {
+        const selectedPoint = { row, column };
+        if (!wordSearchStart) {
+          wordSearchStart = selectedPoint;
+          selectedWordSearchCells = [`${row}-${column}`];
+          wordSearchStatus.textContent = 'Start selected.';
+          renderWordSearchSelection();
+          return;
+        }
+
+        const path = getWordSearchPath(wordSearchStart, selectedPoint);
+        if (!path) {
+          wordSearchStart = selectedPoint;
+          selectedWordSearchCells = [`${row}-${column}`];
+          wordSearchStatus.textContent = 'That line does not connect the selected letters.';
+          renderWordSearchSelection();
+          return;
+        }
+
+        const pathKeys = path.map((point) => `${point.row}-${point.column}`);
+        const matchedWord = wordSearchWords.find((entry) => {
+          if (foundWordSearchWords.has(entry.word)) return false;
+          const answerPath = wordSearchPositions.get(entry.word);
+          const reversePath = [...answerPath].reverse();
+          return pathKeys.join(',') === answerPath.join(',') || pathKeys.join(',') === reversePath.join(',');
+        });
+
+        if (matchedWord) {
+          foundWordSearchWords.add(matchedWord.word);
+          wordSearchPositions.get(matchedWord.word).forEach((cellKey) => foundWordSearchCells.add(cellKey));
+          const listItem = wordSearchList.querySelector(`[data-word="${matchedWord.word}"]`);
+          listItem.classList.add('found');
+          wordSearchStatus.textContent = foundWordSearchWords.size === wordSearchWords.length
+            ? 'All words found. Great work!'
+            : `Found ${matchedWord.word}!`;
+        } else if (path.length > 1) {
+          wordSearchStatus.textContent = 'No hidden word found in that selection.';
+        } else {
+          wordSearchStatus.textContent = 'Selection cleared.';
+        }
+
+        wordSearchStart = null;
+        selectedWordSearchCells = [];
+        renderWordSearchSelection();
+      }
+
+      function renderWordSearchPuzzle() {
+        wordSearchGrid.replaceChildren();
+        wordSearchList.replaceChildren();
+        wordSearchButtons.clear();
+
+        wordSearchWords.forEach((entry) => {
+          const listItem = document.createElement('li');
+          listItem.className = 'word-search-word';
+          listItem.dataset.word = entry.word;
+          const label = document.createElement('span');
+          label.className = 'word-search-label';
+          label.textContent = entry.word;
+          const status = document.createElement('span');
+          status.className = 'word-search-word-status';
+          listItem.append(label, status);
+          wordSearchList.appendChild(listItem);
+        });
+
+        for (let row = 0; row < wordSearchSize; row += 1) {
+          for (let column = 0; column < wordSearchSize; column += 1) {
+            const cellKey = `${row}-${column}`;
+            const button = document.createElement('button');
+            button.className = 'word-search-letter';
+            button.type = 'button';
+            button.textContent = wordSearchLetters[row][column];
+            button.dataset.row = row;
+            button.dataset.column = column;
+            button.tabIndex = row === 0 && column === 0 ? 0 : -1;
+            button.setAttribute('aria-label', `Row ${row + 1}, column ${column + 1}, letter ${wordSearchLetters[row][column]}`);
+            button.setAttribute('aria-pressed', 'false');
+            button.addEventListener('click', () => selectWordSearchCell(row, column));
+            button.addEventListener('focus', () => {
+              wordSearchButtons.forEach((candidate) => {
+                candidate.tabIndex = candidate === button ? 0 : -1;
+              });
+            });
+            button.addEventListener('keydown', (event) => {
+              const movement = {
+                ArrowUp: [-1, 0],
+                ArrowDown: [1, 0],
+                ArrowLeft: [0, -1],
+                ArrowRight: [0, 1]
+              };
+              if (!movement[event.key]) return;
+              event.preventDefault();
+              const [rowStep, columnStep] = movement[event.key];
+              const nextButton = wordSearchButtons.get(`${row + rowStep}-${column + columnStep}`);
+              if (nextButton) nextButton.focus();
+            });
+            wordSearchButtons.set(cellKey, button);
+            wordSearchGrid.appendChild(button);
+          }
+        }
+
+        renderWordSearchSelection();
+      }
+
+      function clearWordSearchProgress() {
+        foundWordSearchWords.clear();
+        foundWordSearchCells.clear();
+        wordSearchStart = null;
+        selectedWordSearchCells = [];
+        wordSearchList.querySelectorAll('.word-search-word').forEach((item) => {
+          item.classList.remove('found');
+          item.querySelector('.word-search-word-status').textContent = '';
+        });
+        wordSearchStatus.textContent = '';
+        renderWordSearchSelection();
+      }
+
+      renderWordSearchPuzzle();
+
+      document.getElementById('reset-word-search').addEventListener('click', clearWordSearchProgress);
+
+      document.getElementById('new-word-search').addEventListener('click', () => {
+        wordSearchPuzzle = createWordSearchPuzzle();
+        wordSearchWords = wordSearchPuzzle.words;
+        wordSearchLetters = wordSearchPuzzle.letters;
+        wordSearchPositions = wordSearchPuzzle.positions;
+        foundWordSearchWords.clear();
+        foundWordSearchCells.clear();
+        wordSearchStart = null;
+        selectedWordSearchCells = [];
+        renderWordSearchPuzzle();
+        wordSearchStatus.textContent = 'New puzzle generated.';
+      });
+
     </script>
   </body>
 </html>
