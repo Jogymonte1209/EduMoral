@@ -128,6 +128,36 @@
         font-size: 1.05rem;
       }
 
+      .history-nav {
+        display: grid;
+        grid-template-columns: repeat(5, minmax(0, 1fr));
+        gap: 10px;
+        margin: 30px 0;
+      }
+
+      .history-nav a {
+        padding: 10px 12px;
+        border: 1px solid rgba(44, 79, 191, 0.12);
+        border-radius: 12px;
+        background: rgba(255, 255, 255, 0.8);
+        color: var(--primary-dark);
+        font-size: 0.88rem;
+        font-weight: 600;
+        text-align: center;
+        transition: border-color 0.2s ease, transform 0.2s ease;
+      }
+
+      .history-nav a:hover,
+      .history-nav a:focus-visible {
+        border-color: var(--primary);
+        transform: translateY(-2px);
+      }
+
+      .history-nav a:focus-visible {
+        outline: 3px solid rgba(44, 79, 191, 0.25);
+        outline-offset: 2px;
+      }
+
       .history-card {
         background: rgba(255, 255, 255, 0.96);
         border: 1px solid rgba(44, 79, 191, 0.08);
@@ -136,10 +166,23 @@
         padding: 32px 28px;
       }
 
+      .history-card section {
+        padding: 0 0 24px;
+        margin: 0 0 24px;
+        border-bottom: 1px solid rgba(44, 79, 191, 0.1);
+        scroll-margin-top: 100px;
+      }
+
+      .history-card section:last-of-type {
+        padding-bottom: 0;
+        margin-bottom: 0;
+        border-bottom: 0;
+      }
+
       .history-card h2 {
         font-size: 1.5rem;
-        margin-top: 26px;
         margin-bottom: 10px;
+        line-height: 1.35;
       }
 
       .history-card p {
@@ -147,8 +190,31 @@
         color: var(--text);
       }
 
+      .history-card p:last-child {
+        margin-bottom: 0;
+      }
+
       .history-card p strong {
         color: var(--primary-dark);
+      }
+
+      .scripture-ref {
+        display: inline-block;
+        margin-bottom: 12px;
+        padding: 4px 10px;
+        border-radius: 999px;
+        background: var(--panel-alt);
+        color: var(--primary);
+        font-size: 0.82rem;
+        font-weight: 700;
+      }
+
+      .history-note {
+        padding: 18px 20px;
+        border-left: 4px solid var(--accent);
+        border-radius: 0 12px 12px 0;
+        background: #fff8ee;
+        color: var(--muted);
       }
 
       .back-link {
@@ -156,11 +222,21 @@
         display: inline-flex;
       }
 
+      @media (max-width: 760px) {
+        .history-nav {
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+      }
+
       @media (max-width: 640px) {
         .nav {
           flex-wrap: wrap;
           gap: 12px;
           justify-content: center;
+        }
+
+        .history-card {
+          padding: 24px 20px;
         }
       }
     </style>
@@ -182,46 +258,95 @@
           <p class="eyebrow">Religious History</p>
           <h1>The Story of Faith Through the Ages</h1>
           <p class="intro">
-            Religious history is not just a list of names or events. It is the story of how people across generations sought God, wrestled with doubt, built communities, and discovered hope through covenant, prophecy, sacrifice, and grace.
+            Follow the Bible’s unfolding story from creation and the first covenant to Jesus, the early church, and the faith communities that carried the gospel across generations. Each chapter includes passages to read alongside the historical overview.
           </p>
         </div>
 
+        <nav class="history-nav" aria-label="History timeline">
+          <a href="#creation">Creation</a>
+          <a href="#patriarchs">Patriarchs</a>
+          <a href="#exodus">Exodus</a>
+          <a href="#judges">Judges</a>
+          <a href="#kingdom">Kingdom</a>
+          <a href="#exile">Exile &amp; return</a>
+          <a href="#waiting">Between the Testaments</a>
+          <a href="#jesus">Jesus</a>
+          <a href="#church">Early church</a>
+          <a href="#legacy">Faith through the ages</a>
+        </nav>
+
         <article class="history-card">
-          <h2>1. The Beginning of Creation</h2>
-          <p><strong>In the beginning, God created the heavens and the earth.</strong> That single statement carries the weight of all religious history. It teaches that the world did not emerge by accident or chaos, but by purpose and design. The biblical story begins with order, light, life, and the goodness of creation. Human beings were made in the image of God, which places dignity, responsibility, and moral meaning at the heart of human existence.</p>
+          <section id="creation">
+            <h2>1. Creation and the Human Story</h2>
+            <span class="scripture-ref">Genesis 1–11</span>
+            <p><strong>“In the beginning God created the heavens and the earth.”</strong> The Bible opens with a world brought into being by God, described as good and full of life. Humanity is made in God’s image and entrusted with caring for creation. These opening chapters establish dignity, responsibility, and relationship as key themes of the story.</p>
+            <p>Genesis also describes the fracture caused by human disobedience, followed by violence and the flood. Yet judgment is accompanied by mercy: God preserves life and makes a covenant with Noah. The story introduces a recurring pattern—human failure, divine faithfulness, and the possibility of a new beginning.</p>
+          </section>
 
-          <p>From the very first chapters of Scripture, humanity is shown as both remarkable and broken. Adam and Eve were entrusted with freedom, yet they chose disobedience. Their fall introduced sin, separation, and the need for redemption. Even in the moment of loss, God’s mercy was already at work, pointing toward a future restoration that would unfold across the centuries.</p>
+          <section id="patriarchs">
+            <h2>2. The Patriarchs and God’s Promise</h2>
+            <span class="scripture-ref">Genesis 12–50</span>
+            <p>God calls Abraham to leave his home and journey toward an unknown land, promising to make him a blessing to all families of the earth. The promise continues through Isaac and Jacob, whose family becomes the people of Israel. Their lives include conflict, uncertainty, and moments of trust, showing that the covenant story unfolds through imperfect people.</p>
+            <p>Joseph, one of Jacob’s sons, is taken to Egypt and eventually rises to leadership there. During a famine, his family joins him, setting the stage for the Israelites’ later hardship and deliverance from Egypt.</p>
+          </section>
 
-          <h2>2. The Covenant and the Call of Abraham</h2>
-          <p>After the early story of creation and fall, God begins a covenant relationship with humanity in a deeper and more personal way. He calls Abraham to leave his homeland and go to a land he has not yet seen. This call is extraordinary because it is not just about place—it is about trust, promise, and a new people who would carry God’s blessing to the world.</p>
+          <section id="exodus">
+            <h2>3. Exodus, Covenant, and the Wilderness</h2>
+            <span class="scripture-ref">Exodus–Deuteronomy</span>
+            <p>In Exodus, the Israelites are enslaved in Egypt. God calls Moses to lead them out, and the escape from slavery becomes a defining memory of deliverance. At Mount Sinai, the people receive the covenant and the Law, which shapes their worship and calls them to live with justice, faithfulness, and care for one another.</p>
+            <p>The wilderness years test the community’s trust. The books of Leviticus, Numbers, and Deuteronomy preserve laws, journeys, and Moses’ teaching before the people enter the land. The Exodus remains central to Israel’s identity and is remembered throughout the Bible as a sign of God’s power to save.</p>
+          </section>
 
-          <p>Abraham’s faith becomes the foundation of biblical history. God promises to make him a great nation and to bless all nations through him. Later, the people of Israel emerge as a covenant community shaped by God’s laws, worship, and purpose. Their story is marked by both faithfulness and rebellion, but God remains patient, teaching His people that He is holy, loving, and faithful even when they are not.</p>
+          <section id="judges">
+            <h2>4. The Land, the Judges, and a People in Transition</h2>
+            <span class="scripture-ref">Joshua–Ruth</span>
+            <p>The book of Joshua tells of Israel’s entry into Canaan and the division of the land among the tribes. In the period that follows, the tribes are not ruled by a single king. Judges such as Deborah, Gideon, and Samson lead during times of danger and instability, while the book of Ruth offers a quieter story of loyalty and belonging within this era.</p>
+            <p>The biblical account describes a repeated cycle: the people turn away, face hardship, call for help, and are delivered. These stories set up the desire for stable leadership and raise questions about what faithful leadership should look like.</p>
+          </section>
 
-          <h2>3. The Law, the Prophets, and the Longing for Redemption</h2>
-          <p>As Israel grows as a nation, God gives them the Law to shape their worship, justice, and obedience. The Law reveals God’s holiness and also exposes the human need for grace. Through the prophets, God speaks to a people who often drift away from Him, calling them back to justice, mercy, and devotion.</p>
+          <section id="kingdom">
+            <h2>5. The United and Divided Kingdoms</h2>
+            <span class="scripture-ref">1 Samuel–2 Chronicles</span>
+            <p>Israel’s monarchy begins with Saul, followed by David, who establishes Jerusalem as the political center. David’s son Solomon builds the Temple, a central place of worship. The biblical narrative links the royal line with a promise of lasting significance, while also showing how power and personal failure can bring harm.</p>
+            <p>After Solomon, the kingdom divides into Israel in the north and Judah in the south. Prophets—including Elijah, Isaiah, and Jeremiah—call rulers and people back to worship, justice, and care for the vulnerable. Their warnings speak to the consequences of injustice and idolatry, while their promises hold out hope for renewal.</p>
+          </section>
 
-          <p>The prophets also point toward a future of hope. They speak of a servant who will suffer, a king who will reign in righteousness, and a restoration that will bring peace to the nations. This hope becomes one of the central threads of religious history. The people of God were not simply looking for rules; they were looking for rescue, renewal, and a Savior.</p>
+          <section id="exile">
+            <h2>6. Exile, Return, and Rebuilding</h2>
+            <span class="scripture-ref">2 Kings 17–25; Ezra–Nehemiah</span>
+            <p>The biblical books of Kings describe the fall of the northern kingdom and, later, the destruction of Jerusalem and the exile of many people of Judah to Babylon. Exile brought loss of land, Temple, and political independence. In this difficult setting, the prophets continued to speak of God’s presence and a future restoration.</p>
+            <p>Under Persian rule, some exiles returned to Jerusalem. They rebuilt the Temple and, later, the city walls. The books of Ezra and Nehemiah describe efforts to renew communal life around Scripture and worship. The return brought hope, but the people still awaited the fuller restoration described by the prophets.</p>
+          </section>
 
-          <h2>4. The Coming of Christ</h2>
-          <p>In the fullness of time, the story turns toward the life and ministry of Jesus Christ. His birth, teachings, miracles, death, and resurrection became the defining moment in religious history. Jesus did not merely teach moral wisdom; He revealed the character of God, healed the broken, challenged the proud, and offered forgiveness to the humble.</p>
+          <section id="waiting">
+            <h2>7. Between the Testaments</h2>
+            <span class="scripture-ref">A bridge to the New Testament</span>
+            <p>In the centuries before the New Testament period, Jewish communities lived under a succession of empires and political powers. Greek language and culture spread widely, and later Roman rule shaped the world in which the New Testament events took place. Jewish life remained diverse, with different communities and movements interpreting Scripture and practicing their faith in distinct ways.</p>
+            <p>This period helps explain the setting of the Gospels: synagogues, pilgrimage to Jerusalem, Roman officials, and widespread expectation for God to act. It is a historical bridge rather than a silent gap between the two parts of the Bible.</p>
+          </section>
 
-          <p>His crucifixion speaks of the cost of sin and the depth of God’s love. His resurrection demonstrates victory over death and opens the way to eternal hope. For Christians, Jesus is not simply a moral teacher or historical figure. He is the Son of God, the promised Messiah, and the center of salvation history.</p>
+          <section id="jesus">
+            <h2>8. Jesus Christ: The Center of the Christian Story</h2>
+            <span class="scripture-ref">Matthew–John</span>
+            <p>The Gospels describe Jesus’ birth, ministry, teaching, and works of healing in the Roman-ruled land of Judea and Galilee. He announces the kingdom of God, welcomes people on the margins, challenges hypocrisy, and teaches love of God and neighbor. His disciples come to recognize him as the promised Messiah.</p>
+            <p>Jesus is crucified under Roman authority. The Gospels then proclaim his resurrection, which Christians understand as God’s victory over sin and death. His life, death, and resurrection form the foundation of Christian faith and the turning point around which the New Testament story is told.</p>
+          </section>
 
-          <h2>5. The Early Church and the Spread of the Gospel</h2>
-          <p>After Jesus’ resurrection, the disciples carried the message of the gospel across cities, regions, and cultures. The early church was marked by prayer, teaching, worship, and radical love. Even under pressure and persecution, the faith spread because it offered hope, belonging, and truth to people longing for meaning.</p>
+          <section id="church">
+            <h2>9. The Early Church and the Gospel’s Expansion</h2>
+            <span class="scripture-ref">Acts; Romans–Revelation</span>
+            <p>Acts begins with Jesus’ followers in Jerusalem and describes the growth of the church after Pentecost. The message travels through Judea and Samaria and into cities across the Roman world. Paul and other missionaries establish and encourage communities, bringing the gospel to both Jewish and non-Jewish audiences.</p>
+            <p>Letters in the New Testament address the beliefs, questions, and practical challenges of these communities. They teach about grace, unity, worship, and daily life. Revelation offers hope to communities facing pressure, presenting a vision of God’s justice and the renewal of creation.</p>
+          </section>
 
-          <p>Paul and other leaders wrote letters that explained the gospel and encouraged believers to live with faith, humility, and love. The early church became a witness to the power of Christ to transform lives. It was not built on political power but on conviction, sacrifice, and the promise of resurrection.</p>
+          <section id="legacy">
+            <h2>10. Faith Through the Ages</h2>
+            <span class="scripture-ref">A continuing story</span>
+            <p>After the New Testament period, Christian communities continued to grow and take root in different cultures. Across history, believers have translated Scripture, formed communities of worship, served neighbors, and debated how best to live out their faith. Their story includes both acts of compassion and chapters of failure, which invite honest reflection rather than a simplified account.</p>
+            <p>Studying this history can connect big events with personal faith: the call to trust, the work of justice and mercy, and the hope of restoration. Readers can trace these themes in the Bible and consider how they shape faithful choices today.</p>
+          </section>
 
-          <h2>6. Religion, Culture, and the Long Hand of God</h2>
-          <p>Religious history is not a simple progression of events—it is a living story. It has shaped art, ethics, music, law, charity, and community life across the world. Faith has inspired people to build hospitals, schools, libraries, and communities centered on care and compassion. It has also challenged systems of injustice and called people to dignity, forgiveness, and mercy.</p>
-
-          <p>At the heart of this history is a recurring theme: God is not distant from human struggles. He is present in covenant, in exile, in suffering, in deliverance, and in restoration. Across centuries, believers have discovered that faith is not the absence of trouble—it is trust in God through trouble.</p>
-
-          <h2>7. Faith for Today</h2>
-          <p>When we study religious history, we see that faithful people were not perfect, but they were persistent. They prayed, believed, repented, and trusted God even when they could not see the full story. That same call remains true today. The history of faith invites us to live with courage, justice, compassion, and hope.</p>
-
-          <p>Whether we are looking at the call of Abraham, the law of Moses, the ministry of Jesus, or the growth of the early church, we see one central truth: God has been working through people and generations to bring salvation, renewal, and love to the world. That story continues, and it asks each generation to respond with faith.</p>
-
+          <p class="history-note"><strong>How to keep exploring:</strong> Read the Scripture references for each chapter, notice how covenant and hope develop over time, and compare how each biblical book contributes to the larger story.</p>
           <a href="index.html" class="primary-btn back-link">Return to Home</a>
         </article>
       </div>
