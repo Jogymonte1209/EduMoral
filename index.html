@@ -9,17 +9,17 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
     <style>
       :root {
-        --bg: #f5f7ff;
-        --panel: #ffffff;
-        --panel-alt: #eef3ff;
-        --primary: #2c4fbf;
-        --primary-dark: #1c2f7c;
-        --accent: #ffbf69;
-        --text: #1a1f2d;
-        --muted: #5b6478;
+        --bg: #f7f1e5;
+        --panel: #fffdf8;
+        --panel-alt: #efe2cc;
+        --primary: #795334;
+        --primary-dark: #4c3526;
+        --accent: #c69a58;
+        --text: #342a20;
+        --muted: #746657;
         --success: #1e9f6e;
         --danger: #d64545;
-        --shadow: 0 18px 45px rgba(28, 47, 124, 0.12);
+        --shadow: 0 18px 45px rgba(76, 53, 38, 0.12);
       }
 
       * {
@@ -34,7 +34,7 @@
 
       body {
         font-family: "Poppins", sans-serif;
-        background: linear-gradient(180deg, #f8f9ff 0%, #edf2ff 100%);
+        background: linear-gradient(180deg, #fbf8f1 0%, #f0e6d5 100%);
         color: var(--text);
         line-height: 1.6;
       }
@@ -63,7 +63,7 @@
       }
 
       .alt-bg {
-        background: rgba(180, 198, 255, 0.12);
+        background: rgba(198, 154, 88, 0.09);
       }
 
       .site-header {
@@ -71,8 +71,12 @@
         top: 0;
         z-index: 10;
         backdrop-filter: blur(10px);
-        background: rgba(245, 247, 255, 0.8);
-        border-bottom: 1px solid rgba(44, 79, 191, 0.08);
+        background: rgba(251, 248, 241, 0.88);
+        border-bottom: 1px solid rgba(121, 83, 52, 0.08);
+      }
+
+      .nav {
+        gap: 16px;
       }
 
       .nav {
@@ -97,7 +101,7 @@
         border-radius: 12px;
         color: white;
         font-size: 1.15rem;
-        background: linear-gradient(135deg, var(--primary), #5e84ff);
+        background: linear-gradient(135deg, var(--primary), #a77a49);
         box-shadow: var(--shadow);
       }
 
@@ -177,14 +181,14 @@
       }
 
       .secondary-btn {
-        border: 1px solid rgba(44, 79, 191, 0.2);
+        border: 1px solid rgba(121, 83, 52, 0.2);
         background: white;
         color: var(--primary-dark);
       }
 
       .hero-card {
-        background: linear-gradient(180deg, #ffffff, #f1f5ff);
-        border: 1px solid rgba(44, 79, 191, 0.1);
+        background: linear-gradient(180deg, #fffdf8, #f3eadb);
+        border: 1px solid rgba(121, 83, 52, 0.1);
         border-radius: 22px;
         padding: 28px 24px;
         box-shadow: var(--shadow);
@@ -194,8 +198,8 @@
         display: inline-block;
         padding: 6px 10px;
         border-radius: 999px;
-        background: rgba(255, 191, 105, 0.2);
-        color: #8b5a00;
+        background: rgba(198, 154, 88, 0.2);
+        color: #704b22;
         font-size: 0.72rem;
         font-weight: 700;
         margin-bottom: 14px;
@@ -240,18 +244,25 @@
       .quiz-card,
       .quote-card,
       .verse-panel {
-        background: rgba(255, 255, 255, 0.92);
-        border: 1px solid rgba(44, 79, 191, 0.09);
+        background: rgba(255, 253, 248, 0.96);
+        border: 1px solid rgba(121, 83, 52, 0.09);
         border-radius: 22px;
         box-shadow: var(--shadow);
       }
 
       .feature-card {
         padding: 24px 20px;
+        transition: background-color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+      }
+
+      .feature-card:hover,
+      .feature-card:focus-visible {
+        background: linear-gradient(180deg, #efe2cc, #fffdf8);
+        border-color: rgba(121, 83, 52, 0.22);
       }
 
       .feature-card.highlight {
-        background: linear-gradient(180deg, #eef3ff, #ffffff);
+        background: linear-gradient(180deg, #efe2cc, #fffdf8);
       }
 
       .icon {
@@ -260,7 +271,7 @@
         display: grid;
         place-items: center;
         border-radius: 16px;
-        background: rgba(44, 79, 191, 0.08);
+        background: rgba(121, 83, 52, 0.08);
         font-size: 1.5rem;
         margin-bottom: 18px;
       }
@@ -316,8 +327,8 @@
       .quiz-option {
         width: 100%;
         text-align: left;
-        background: #f5f7ff;
-        border: 1px solid rgba(44, 79, 191, 0.1);
+        background: #f7f1e5;
+        border: 1px solid rgba(121, 83, 52, 0.1);
         color: var(--text);
         border-radius: 12px;
         padding: 14px 16px;
@@ -326,7 +337,7 @@
       }
 
       .quiz-option:hover {
-        border-color: rgba(44, 79, 191, 0.35);
+        border-color: rgba(121, 83, 52, 0.35);
       }
 
       .quiz-option.correct {
@@ -377,7 +388,7 @@
 
       .history-item {
         background: white;
-        border: 1px solid rgba(44, 79, 191, 0.1);
+        border: 1px solid rgba(121, 83, 52, 0.1);
         border-radius: 18px;
         padding: 24px 18px;
         box-shadow: var(--shadow);
@@ -389,7 +400,7 @@
         width: 42px;
         height: 42px;
         border-radius: 12px;
-        background: rgba(44, 79, 191, 0.1);
+        background: rgba(121, 83, 52, 0.1);
         color: var(--primary);
         font-weight: 700;
         margin-bottom: 12px;
@@ -421,7 +432,7 @@
         aspect-ratio: 1;
         min-width: 0;
         padding: 0;
-        border: 1px solid rgba(44, 79, 191, 0.14);
+        border: 1px solid rgba(121, 83, 52, 0.14);
         border-radius: 4px;
         background: #fff;
         color: var(--text);
@@ -436,8 +447,8 @@
       }
 
       .word-search-letter.is-selected {
-        border-color: #c98a19;
-        background: rgba(255, 191, 105, 0.35);
+        border-color: #a97835;
+        background: rgba(198, 154, 88, 0.3);
       }
 
       .word-search-letter.is-found {
@@ -474,7 +485,7 @@
         display: flex;
         justify-content: space-between;
         gap: 8px;
-        border-bottom: 1px solid rgba(44, 79, 191, 0.12);
+        border-bottom: 1px solid rgba(121, 83, 52, 0.12);
         padding-bottom: 8px;
         font-weight: 600;
       }
@@ -544,6 +555,8 @@
         }
       }
     </style>
+    <link rel="stylesheet" href="theme.css" />
+    <script src="theme.js" defer></script>
   </head>
   <body>
     <header class="site-header">
@@ -552,8 +565,50 @@
           <span class="brand-mark">✝</span>
           <span>EduMoral</span>
         </div>
+        <button class="theme-toggle" type="button" id="theme-toggle" aria-expanded="false" aria-controls="theme-drawer">
+          <span aria-hidden="true">◐</span> Appearance
+        </button>
       </div>
     </header>
+
+    <div class="theme-overlay" id="theme-overlay" hidden></div>
+    <aside class="theme-drawer" id="theme-drawer" aria-labelledby="theme-title" aria-hidden="true">
+      <div class="theme-drawer-heading">
+        <div>
+          <p class="eyebrow">Make it yours</p>
+          <h2 id="theme-title">Appearance</h2>
+        </div>
+        <button class="theme-close" type="button" id="theme-close" aria-label="Close appearance settings">×</button>
+      </div>
+      <fieldset class="theme-options">
+        <legend>Color scheme</legend>
+        <label class="theme-option">
+          <input type="radio" name="theme-scheme" value="parchment" />
+          <span class="theme-swatch" style="--swatch-color: #795334; --swatch-light: #f7f1e5"></span>
+          <span><strong>Parchment</strong><small>Warm leather &amp; paper</small></span>
+        </label>
+        <label class="theme-option">
+          <input type="radio" name="theme-scheme" value="forest" />
+          <span class="theme-swatch" style="--swatch-color: #476b4b; --swatch-light: #eff4e9"></span>
+          <span><strong>Olive Grove</strong><small>Quiet greens &amp; cream</small></span>
+        </label>
+        <label class="theme-option">
+          <input type="radio" name="theme-scheme" value="ocean" />
+          <span class="theme-swatch" style="--swatch-color: #3d6877; --swatch-light: #eaf3f4"></span>
+          <span><strong>Sea of Galilee</strong><small>Calm blue &amp; mist</small></span>
+        </label>
+        <label class="theme-option">
+          <input type="radio" name="theme-scheme" value="berry" />
+          <span class="theme-swatch" style="--swatch-color: #815365; --swatch-light: #f5edf0"></span>
+          <span><strong>Royal Fig</strong><small>Muted plum &amp; linen</small></span>
+        </label>
+      </fieldset>
+      <label class="theme-dark-toggle" for="theme-dark">
+        <span><strong>Dark mode</strong><small>Easy on the eyes in low light</small></span>
+        <input type="checkbox" id="theme-dark" />
+      </label>
+      <p class="theme-status" id="theme-status" role="status" aria-live="polite"></p>
+    </aside>
 
     <main>
       <section class="hero">
@@ -572,11 +627,9 @@
           </div>
           <div class="hero-card">
             <div class="badge">Today’s Focus</div>
-            <h3>Love and Wisdom</h3>
-            <p>
-              “Let all that you do be done in love.”
-            </p>
-            <span>1 Corinthians 16:14</span>
+            <h3>Daily Scripture</h3>
+            <p id="focus-verse-text"></p>
+            <span id="focus-verse-reference"></span>
           </div>
         </div>
       </section>
@@ -613,7 +666,7 @@
               <h3>History of God</h3>
               <p>Educational content that shares biblical stories and God’s unfolding plan.</p>
             </a>
-            <a class="feature-card highlight" href="#word-search">
+            <a class="feature-card" href="#word-search">
               <div class="icon">🔎</div>
               <h3>Word Search</h3>
               <p>Find hidden words from Scripture in an interactive letter grid.</p>
@@ -837,6 +890,28 @@
         { text: 'He will wipe every tear from their eyes. There will be no more death or mourning or crying or pain, for the old order of things has passed away.', reference: 'Revelation 21:4' },
         { text: 'He who testifies to these things says, “Yes, I am coming soon.” Amen. Come, Lord Jesus.', reference: 'Revelation 22:20' }
       ];
+
+      const focusVerseText = document.getElementById('focus-verse-text');
+      const focusVerseReference = document.getElementById('focus-verse-reference');
+      const previousFocusKey = 'edumoral-focus-reference';
+      let previousFocusReference = null;
+
+      try {
+        previousFocusReference = localStorage.getItem(previousFocusKey);
+      } catch (error) {
+        console.error('Unable to read the previous focus verse.', error);
+      }
+
+      const availableFocusVerses = verses.filter((verse) => verse.reference !== previousFocusReference);
+      const focusVerse = availableFocusVerses[Math.floor(Math.random() * availableFocusVerses.length)];
+      focusVerseText.textContent = `“${focusVerse.text}”`;
+      focusVerseReference.textContent = focusVerse.reference;
+
+      try {
+        localStorage.setItem(previousFocusKey, focusVerse.reference);
+      } catch (error) {
+        console.error('Unable to save the focus verse.', error);
+      }
 
       const quotes = [
         { text: '“Faith is taking the first step even when you do not see the whole staircase.”', author: 'Martin Luther King Jr.' },
@@ -1153,7 +1228,7 @@
           questionEl.textContent = `Quiz complete! Your score is ${score} / ${activeQuiz.length}`;
           optionsEl.innerHTML = '';
           feedbackEl.textContent = 'You did well. Keep learning and growing in faith!';
-          feedbackEl.style.color = '#2c4fbf';
+          feedbackEl.style.color = '#795334';
           nextBtn.textContent = 'Start Another Check';
         }
       });

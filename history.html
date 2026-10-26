@@ -9,15 +9,15 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
     <style>
       :root {
-        --bg: #f5f7ff;
-        --panel: #ffffff;
-        --panel-alt: #eef3ff;
-        --primary: #2c4fbf;
-        --primary-dark: #1c2f7c;
-        --accent: #ffbf69;
-        --text: #1a1f2d;
-        --muted: #5b6478;
-        --shadow: 0 18px 45px rgba(28, 47, 124, 0.12);
+        --bg: #f7f1e5;
+        --panel: #fffdf8;
+        --panel-alt: #efe2cc;
+        --primary: #795334;
+        --primary-dark: #4c3526;
+        --accent: #c69a58;
+        --text: #342a20;
+        --muted: #746657;
+        --shadow: 0 18px 45px rgba(76, 53, 38, 0.12);
       }
 
       * {
@@ -28,7 +28,7 @@
 
       body {
         font-family: "Poppins", sans-serif;
-        background: linear-gradient(180deg, #f8f9ff 0%, #edf2ff 100%);
+        background: linear-gradient(180deg, #fbf8f1 0%, #f0e6d5 100%);
         color: var(--text);
         line-height: 1.8;
       }
@@ -47,9 +47,13 @@
         position: sticky;
         top: 0;
         z-index: 10;
-        background: rgba(245, 247, 255, 0.85);
+        background: rgba(251, 248, 241, 0.9);
         backdrop-filter: blur(10px);
-        border-bottom: 1px solid rgba(44, 79, 191, 0.08);
+        border-bottom: 1px solid rgba(121, 83, 52, 0.08);
+      }
+
+      .nav {
+        gap: 16px;
       }
 
       .nav {
@@ -72,7 +76,7 @@
         width: 36px;
         height: 36px;
         border-radius: 12px;
-        background: linear-gradient(135deg, var(--primary), #5e84ff);
+        background: linear-gradient(135deg, var(--primary), #a77a49);
         color: #fff;
         box-shadow: var(--shadow);
       }
@@ -137,9 +141,9 @@
 
       .history-nav a {
         padding: 10px 12px;
-        border: 1px solid rgba(44, 79, 191, 0.12);
+        border: 1px solid rgba(121, 83, 52, 0.12);
         border-radius: 12px;
-        background: rgba(255, 255, 255, 0.8);
+        background: rgba(255, 253, 248, 0.86);
         color: var(--primary-dark);
         font-size: 0.88rem;
         font-weight: 600;
@@ -154,13 +158,13 @@
       }
 
       .history-nav a:focus-visible {
-        outline: 3px solid rgba(44, 79, 191, 0.25);
+        outline: 3px solid rgba(121, 83, 52, 0.25);
         outline-offset: 2px;
       }
 
       .history-card {
-        background: rgba(255, 255, 255, 0.96);
-        border: 1px solid rgba(44, 79, 191, 0.08);
+        background: rgba(255, 253, 248, 0.97);
+        border: 1px solid rgba(121, 83, 52, 0.08);
         border-radius: 22px;
         box-shadow: var(--shadow);
         padding: 32px 28px;
@@ -169,7 +173,7 @@
       .history-card section {
         padding: 0 0 24px;
         margin: 0 0 24px;
-        border-bottom: 1px solid rgba(44, 79, 191, 0.1);
+        border-bottom: 1px solid rgba(121, 83, 52, 0.1);
         scroll-margin-top: 100px;
       }
 
@@ -213,7 +217,7 @@
         padding: 18px 20px;
         border-left: 4px solid var(--accent);
         border-radius: 0 12px 12px 0;
-        background: #fff8ee;
+        background: #fbf3e6;
         color: var(--muted);
       }
 
@@ -240,6 +244,8 @@
         }
       }
     </style>
+    <link rel="stylesheet" href="theme.css" />
+    <script src="theme.js" defer></script>
   </head>
   <body>
     <header class="site-header">
@@ -249,8 +255,50 @@
           <span>EduMoral</span>
         </div>
         <a href="index.html" class="primary-btn">Back to Home</a>
+        <button class="theme-toggle" type="button" id="theme-toggle" aria-expanded="false" aria-controls="theme-drawer">
+          <span aria-hidden="true">◐</span> Appearance
+        </button>
       </div>
     </header>
+
+    <div class="theme-overlay" id="theme-overlay" hidden></div>
+    <aside class="theme-drawer" id="theme-drawer" aria-labelledby="theme-title" aria-hidden="true">
+      <div class="theme-drawer-heading">
+        <div>
+          <p class="eyebrow">Make it yours</p>
+          <h2 id="theme-title">Appearance</h2>
+        </div>
+        <button class="theme-close" type="button" id="theme-close" aria-label="Close appearance settings">×</button>
+      </div>
+      <fieldset class="theme-options">
+        <legend>Color scheme</legend>
+        <label class="theme-option">
+          <input type="radio" name="theme-scheme" value="parchment" />
+          <span class="theme-swatch" style="--swatch-color: #795334; --swatch-light: #f7f1e5"></span>
+          <span><strong>Parchment</strong><small>Warm leather &amp; paper</small></span>
+        </label>
+        <label class="theme-option">
+          <input type="radio" name="theme-scheme" value="forest" />
+          <span class="theme-swatch" style="--swatch-color: #476b4b; --swatch-light: #eff4e9"></span>
+          <span><strong>Olive Grove</strong><small>Quiet greens &amp; cream</small></span>
+        </label>
+        <label class="theme-option">
+          <input type="radio" name="theme-scheme" value="ocean" />
+          <span class="theme-swatch" style="--swatch-color: #3d6877; --swatch-light: #eaf3f4"></span>
+          <span><strong>Sea of Galilee</strong><small>Calm blue &amp; mist</small></span>
+        </label>
+        <label class="theme-option">
+          <input type="radio" name="theme-scheme" value="berry" />
+          <span class="theme-swatch" style="--swatch-color: #815365; --swatch-light: #f5edf0"></span>
+          <span><strong>Royal Fig</strong><small>Muted plum &amp; linen</small></span>
+        </label>
+      </fieldset>
+      <label class="theme-dark-toggle" for="theme-dark">
+        <span><strong>Dark mode</strong><small>Easy on the eyes in low light</small></span>
+        <input type="checkbox" id="theme-dark" />
+      </label>
+      <p class="theme-status" id="theme-status" role="status" aria-live="polite"></p>
+    </aside>
 
     <main class="page">
       <div class="container">
