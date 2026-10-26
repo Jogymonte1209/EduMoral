@@ -297,8 +297,8 @@ nav a:hover {
 
 .verse-summary {
   color: var(--muted);
-  font-size: 1rem;
-  line-height: 1.7;
+  font-size: 1.5rem;
+  line-height: 1.6;
   margin-bottom: 22px;
   max-width: 760px;
 }
